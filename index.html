@@ -26,6 +26,7 @@
         .half-light {
             font-style: italic;
             margin-bottom: 15px;
+            display: none; /* Hide Half Light's responses initially */
         }
         .insight {
             font-weight: bold;
@@ -40,125 +41,124 @@
         .highlight {
             color: #f8c800;
         }
+        .response-box {
+            background-color: #444;
+            color: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            border: 1px solid #555;
+            box-sizing: border-box;
+            resize: none;
+        }
+        .ask-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #FF6347;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .ask-button:hover {
+            background-color: #ff4d34;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Half Light - Internal Thoughts, Insights & Desires</h1>
 
-        <!-- Example of Half Light's internal voice, aggressive, insightful, and guiding -->
-        <div class="half-light">
+        <!-- Question Input and Button -->
+        <textarea id="userInput" class="response-box" placeholder="Ask Half Light something..."></textarea>
+        <button class="ask-button" onclick="getHalfLightResponse()">Ask Half Light</button>
+
+        <!-- Placeholder for Half Light's response -->
+        <div id="halfLightResponse" class="half-light">
             <p class="insight">"Danger’s in the air, we can feel it. We must act now, don’t let it slip away. He's lying. We know it." </p>
             <p>"We’ve been here before. The fear is real. We control this. Stay focused." </p>
             <p class="advice">"Use that fear, make them sweat. We’re not backing down. Not now, not ever." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse2" class="half-light">
             <p class="insight">"He’s scared, but he’s trying to hide it. We see through that. We’ve been trained for this." </p>
             <p>"They think they can fool us? Let’s show them what happens when you test us." </p>
             <p class="advice">"Take control, strike first. Fear is our ally, let it guide us." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse3" class="half-light">
             <p class="insight">"She’s shaking, can you see it? She’s afraid. We’ll break her, just like we’ve broken others." </p>
             <p>"Let’s turn this whole situation to our advantage. We’re not here to negotiate." </p>
             <p class="advice">"We have one chance. Don’t hesitate. Now is the time. Let them feel it. Let them *know* who’s in charge." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse4" class="half-light">
             <p class="insight">"They don’t know what’s coming. We’ve got them. They think this is a game? Let’s make it personal." </p>
             <p>"We can smell the fear in the air. They’re about to crack." </p>
             <p class="advice">"We make our move, now. Strike with force, or lose control forever." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse5" class="half-light">
             <p class="insight">"He’s not afraid of us yet, but he will be. We’ll make sure of that. Push him. Push harder." </p>
             <p>"Our instincts are screaming. We need to do this now, before it’s too late." </p>
             <p class="advice">"Make them feel the weight of every decision. Show them how far we’re willing to go." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse6" class="half-light">
             <p class="insight">"They’re trying to walk away. We won’t let them. We will make them listen. We will make them fear us." </p>
             <p>"We’re losing control if we let them go. Stop them." </p>
             <p class="advice">"Don’t let them escape. Push harder, dig deeper. We need answers, and we’ll get them — by any means necessary." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse7" class="half-light">
             <p class="insight">"This is where we *win*. They’ve underestimated us. Now, we crush them." </p>
             <p>"We can feel the power shifting in our favor. Take it. Don’t wait." </p>
             <p class="advice">"No mercy. Let the fear take over. They’ll learn who we are soon enough." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse8" class="half-light">
             <p class="insight">"Sweat on their brow, fear in their eyes. They know what’s coming. It’s too late for them." </p>
             <p>"We’ll leave them trembling in our wake. The game is ours." </p>
             <p class="advice">"We don’t stop. We don’t look back. We make them regret crossing us." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse9" class="half-light">
             <p class="insight">"Don’t let them get the upper hand. We control the situation, not them." </p>
             <p>"Everything hinges on this moment. We can’t falter. We can’t show weakness." </p>
             <p class="advice">"Move now. We strike fast and hard. The fear will paralyze them." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse10" class="half-light">
             <p class="insight">"We’re in control. We always were. Let them cower in our presence." </p>
             <p>"There’s no going back now. We’ve pushed them too far." </p>
             <p class="advice">"Finish them off. We’ve already won." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse11" class="half-light">
             <p class="insight">"We can taste the fear in the air. They’re terrified, and it’s *our* time." </p>
             <p>"Every second counts. We strike while they’re weak." </p>
             <p class="advice">"Let them feel it. We’ve waited long enough." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse12" class="half-light">
             <p class="insight">"We’re too fast, too smart. They can’t escape us." </p>
             <p>"Fear will drive them to make mistakes. We’ll be waiting." </p>
             <p class="advice">"Patience. They’ll fall apart soon enough. Don’t push too hard, just let them break." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse13" class="half-light">
             <p class="insight">"We control the conversation. Don’t let them twist it. Not today." </p>
             <p>"We *know* what they’re thinking. They’re scared, and it shows." </p>
             <p class="advice">"We make them do what we want. No exceptions." </p>
         </div>
 
-        <div class="half-light">
+        <div id="halfLightResponse14" class="half-light">
             <p class="insight">"The longer we wait, the more they crumble. They can’t keep up." </p>
-            <p>"We’ve got them right where we want them. Time to act." </p>
-            <p class="advice">"Strike now, while they’re vulnerable. Fear will follow them wherever they go." </p>
-        </div>
-
-        <!-- Interactive Chat Section -->
-        <div class="chat-box">
-            <h2>Talk to Half Light</h2>
-            <input type="text" id="userInput" placeholder="What do you want to ask?" />
-            <button onclick="getResponse()">Ask Half Light</button>
-            <div id="response" class="response"></div>
-        </div>
-    </div>
-
-    <script>
-        function getResponse() {
-            const userInput = document.getElementById('userInput').value.toLowerCase();
-            let response = '';
-
-            // Matching user input with responses
-            if (userInput.includes('fear')) {
-                response = '"Fear is our ally. Use it, make them sweat. We control this."';
-            } else if (userInput.includes('control')) {
-                response = '"We are in control. They will know it soon enough."';
-            } else if (userInput.includes('act')) {
-                response = '"We must act now, before they realize what’s happening."';
-            } else {
-                response = '"Speak your mind. We are always listening."';
-            }
-
-            // Display the response
-            document.getElementById('response').innerText = response;
-            document.getElementById('userInput').value = '';  // Clear input field
-        }
-    </script>
-</body
+            <p>"We’ve got them right where we want them
