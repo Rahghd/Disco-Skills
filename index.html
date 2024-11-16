@@ -163,24 +163,21 @@
         ];
 
         function getHalfLightResponse() {
-            const userInput = document.getElementById("user-input").value.trim();
+            const userInput = document.getElementById("user-input").value.trim().toLowerCase();
             if (!userInput) return;
 
-            // Select a random dialogue line to simulate Half Light's response
-            const randomDialogue = halfLightDialogues[Math.floor(Math.random() * halfLightDialogues.length)];
+            // Simple keywords for emotional context
+            const keywords = [
+                { word: 'fear', response: "Fear’s been creeping up on you, hasn't it? Don’t let it consume you. Harness it. Control it." },
+                { word: 'tension', response: "The tension’s thick, isn’t it? That feeling of something about to snap? Let it fuel your instincts. They're hiding something." },
+                { word: 'danger', response: "You sense it too, don’t you? The danger’s all around. We know it. We can use it." },
+                { word: 'fight', response: "Fight for what’s ours. It’s in us. We've trained for this. Let’s make them regret underestimating us." },
+                { word: 'win', response: "Victory is already within our grasp. They just don't know it yet. Keep pushing." }
+            ];
 
-            // Display the response
-            const responseBox = document.getElementById("response");
-            const insight = document.getElementById("response-insight");
-            const advice = document.getElementById("response-advice");
-
-            // Update response box with Half Light's insights
-            insight.innerText = randomDialogue;
-            advice.innerText = "Trust us. You’re not in control, but we are.";
-
-            // Show the response
-            responseBox.style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+            // Check user input for emotional context
+            let responseText = "What’s on your mind? Let me help you focus.";
+            keywords.forEach(keyword => {
+                if (userInput.includes(keyword.word)) {
+                    responseText = keyword.response;
+                }
