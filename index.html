@@ -55,23 +55,31 @@
         .response .advice {
             font-style: normal;
         }
+        #user-input {
+            width: 100%;
+            padding: 10px;
+            background-color: #222;
+            color: #f0f0f0;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #FF6347;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e55347;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Half Light - Internal Thoughts, Insights & Desires</h1>
-
-        <div class="half-light">
-            <p class="insight">"Danger’s in the air, we can feel it. We must act now, don’t let it slip away. He's lying. We know it." </p>
-            <p>"We’ve been here before. The fear is real. We control this. Stay focused." </p>
-            <p class="advice">"Use that fear, make them sweat. We’re not backing down. Not now, not ever." </p>
-        </div>
-
-        <div class="half-light">
-            <p class="insight">"He’s scared, but he’s trying to hide it. We see through that. We’ve been trained for this." </p>
-            <p>"They think they can fool us? Let’s show them what happens when you test us." </p>
-            <p class="advice">"Take control, strike first. Fear is our ally, let it guide us." </p>
-        </div>
 
         <!-- Response Box (hidden until message is sent) -->
         <div id="response" class="response">
@@ -111,45 +119,47 @@
             "They want to outmaneuver us? We’ll see about that.",
             "Trust in what we’ve been trained for. Trust in us. It’s instinct.",
             "We know the weakness, we know how to exploit it. Now’s the time.",
-            "Time to make our move. Let them think they have control—then take it from them.",
-            "We know what they’re hiding. We can almost taste it.",
-            "They can’t escape us. It’s not a matter of choice; it’s inevitable.",
-            "Nothing will stop us now. Let’s make them regret underestimating us.",
-            "Don’t show fear. Show strength. Let them know we own this.",
-            "The distance between us and them is nothing. We’re closing in.",
-            "Keep the pressure on. Don’t give them a chance to breathe.",
-            "They’re weak, and we know it. Let’s make them realize just how powerless they are.",
-            "The truth is within our reach. One more push.",
-            "We’ve come this far, we’re not turning back now.",
-            "Stay alert, stay focused. They don’t get to dictate the pace. We do.",
-            "It’s all a game, and we’re winning. We’re always one step ahead.",
-            "They’ll be caught off guard when we strike. It’s too late for them.",
-            "We’ll bend them to our will. Let them try to resist.",
-            "The enemy doesn’t even know we’re watching. We’ll strike when they least expect it.",
-            "They’ll make the mistake of thinking we’re predictable. They’re wrong.",
-            "We don’t chase victory—it chases us.",
-            "They’ll try to bargain, try to negotiate. We don’t do deals. We do domination.",
-            "Fear is a tool, and we’re using it to carve our path.",
-            "They’re running out of time. We have them right where we want them.",
-            "We’ve prepared for this. There’s no room for failure.",
-            "Every choice we make is calculated. There’s no such thing as a mistake.",
-            "They won’t see it coming. That’s the beauty of it.",
-            "The closer they get to their downfall, the more they fight it. They’re only delaying the inevitable.",
-            "They think they can hide? We see everything.",
-            "We’ve got them where we want them. Now it’s time to make them pay.",
-            "Don’t hold back. Make them feel our presence.",
-            "Every move we make is like a piece on a chessboard. We’re setting up the checkmate.",
-            "They think we’re distracted. They’re about to learn just how wrong they are.",
-            "We’re not just fighting them. We’re breaking them.",
-            "There’s no escape. We know exactly how this ends.",
-            "They might try to resist, but we’ve already won.",
-            "The fight isn’t over until we say it is.",
-            "They’re about to feel the full force of our resolve.",
-            "We move swiftly, decisively. We control the rhythm now.",
-            "The end is near, and we’re the ones holding the cards.",
-            "The more they resist, the closer they are to their end.",
-            "Fear doesn’t make us weak. It makes us unstoppable.",
-            "They’ve made a mistake, and we’re about to capitalize on it."
+            "They’ll regret this. We’ve seen this before. They won’t get away.",
+            "There’s a pattern. Watch closely. We can predict their next move.",
+            "They think they’re clever? Watch us turn the tables.",
+            "Let them believe they have control. It’s better that way.",
+            "Move with purpose. Every step should be calculated.",
+            "They’re in a corner. Don’t let them escape. We’ll trap them.",
+            "Victory is already ours. They just don’t realize it yet.",
+            "The fear? It’s in the air. But we’re not afraid.",
+            "We control how this plays out. They’ll follow our lead.",
+            "Instinct tells us it’s time. We can’t hesitate.",
+            "They might try to escape, but there’s no way out. Not for them.",
+            "Don’t second guess. Act. Now.",
+            "We know their weaknesses. It’s time to strike.",
+            "Trust your gut. We’re on the right path.",
+            "They’ll see we’re not afraid. Let them think they’re in control.",
+            "We’ve seen enough. It’s time to act decisively.",
+            "Don’t let them think they’ve won. They haven’t.",
+            "We’ve got this. Every move is ours to make.",
+            "Stay calm. They’ll make the first mistake. Let’s exploit it.",
+            "Watch their every move. We’ll capitalize on their hesitation.",
+            "Don’t let them control the narrative. We dictate the flow.",
+            "Every moment matters. Make each one count.",
+            "The room’s closing in on them. They can’t escape now.",
+            "They’ll fold. It’s only a matter of time.",
+            "We’ve been here before, and we’ve won before. This time is no different.",
+            "There’s nothing they can do. We’re always one step ahead.",
+            "They’re trying to outthink us. That’s their mistake.",
+            "Fear is a weapon. Let it be ours.",
+            "We don’t wait. We act. Now.",
+            "Their fear is palpable. Good. Let it work for us.",
+            "We’re not backing down. We’ll push them to the edge.",
+            "They’ve made their move. Now it’s our turn.",
+            "There’s nothing left for them to do but surrender.",
+            "The game’s over. We’ve won, and they don’t even know it yet.",
+            "Stay sharp. They’ll make a mistake. And when they do, we strike.",
+            "They’re starting to crack. Just a little more pressure.",
+            "It’s almost over. Stay focused, stay sharp.",
+            "We can feel it. They know they’re losing.",
+            "We’ve been prepared for this moment. We’ll use it to our advantage.",
+            "Don’t wait for them to make a move. We’re in charge now.",
+            "Victory is inevitable. They just don’t know it yet."
         ];
 
         function getHalfLightResponse() {
@@ -164,4 +174,13 @@
             const insight = document.getElementById("response-insight");
             const advice = document.getElementById("response-advice");
 
-            insight.inner
+            // Update response box with Half Light's insights
+            insight.innerText = randomDialogue;
+            advice.innerText = "Trust us. You’re not in control, but we are.";
+
+            // Show the response
+            responseBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
