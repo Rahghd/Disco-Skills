@@ -130,6 +130,35 @@
             <p>"We’ve got them right where we want them. Time to act." </p>
             <p class="advice">"Strike now, while they’re vulnerable. Fear will follow them wherever they go." </p>
         </div>
+
+        <!-- Interactive Chat Section -->
+        <div class="chat-box">
+            <h2>Talk to Half Light</h2>
+            <input type="text" id="userInput" placeholder="What do you want to ask?" />
+            <button onclick="getResponse()">Ask Half Light</button>
+            <div id="response" class="response"></div>
+        </div>
     </div>
-</body>
-</html>
+
+    <script>
+        function getResponse() {
+            const userInput = document.getElementById('userInput').value.toLowerCase();
+            let response = '';
+
+            // Matching user input with responses
+            if (userInput.includes('fear')) {
+                response = '"Fear is our ally. Use it, make them sweat. We control this."';
+            } else if (userInput.includes('control')) {
+                response = '"We are in control. They will know it soon enough."';
+            } else if (userInput.includes('act')) {
+                response = '"We must act now, before they realize what’s happening."';
+            } else {
+                response = '"Speak your mind. We are always listening."';
+            }
+
+            // Display the response
+            document.getElementById('response').innerText = response;
+            document.getElementById('userInput').value = '';  // Clear input field
+        }
+    </script>
+</body
