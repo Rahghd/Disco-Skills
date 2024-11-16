@@ -61,7 +61,6 @@
     <div class="container">
         <h1>Half Light - Internal Thoughts, Insights & Desires</h1>
 
-        <!-- Initial Half Light lines (hidden by default) -->
         <div class="half-light">
             <p class="insight">"Danger’s in the air, we can feel it. We must act now, don’t let it slip away. He's lying. We know it." </p>
             <p>"We’ve been here before. The fear is real. We control this. Stay focused." </p>
@@ -153,11 +152,16 @@
             "They’ve made a mistake, and we’re about to capitalize on it."
         ];
 
-        // Function to dynamically generate Half Light responses based on user input
         function getHalfLightResponse() {
-            const userInput = document.getElementById("user-input").value;
+            const userInput = document.getElementById("user-input").value.trim();
+            if (!userInput) return;
+
+            // Select a random dialogue line to simulate Half Light's response
+            const randomDialogue = halfLightDialogues[Math.floor(Math.random() * halfLightDialogues.length)];
+
+            // Display the response
             const responseBox = document.getElementById("response");
             const insight = document.getElementById("response-insight");
             const advice = document.getElementById("response-advice");
 
-            let responseText = generateHalfLightResponse(user
+            insight.inner
