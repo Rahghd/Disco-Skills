@@ -1,183 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Half Light - Internal Thoughts and Guidance</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #333;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #FF6347;
-        }
-        .half-light {
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-        .insight {
-            font-weight: bold;
-            color: #FF6347;
-            margin-bottom: 10px;
-        }
-        .advice {
-            color: #f0f0f0;
-            margin-top: 15px;
-            font-style: normal;
-        }
-        .highlight {
-            color: #f8c800;
-        }
-        .response {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #444;
-            border-radius: 8px;
-            color: #f0f0f0;
-        }
-        .response .insight {
-            font-weight: bold;
-            color: #FF6347;
-        }
-        .response .advice {
-            font-style: normal;
-        }
-        #user-input {
-            width: 100%;
-            padding: 10px;
-            background-color: #222;
-            color: #f0f0f0;
-            border: 1px solid #555;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #FF6347;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #e55347;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrochemistry AI</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Half Light - Internal Thoughts, Insights & Desires</h1>
+  <h1>Electrochemistry AI</h1>
+  <textarea id="userInput" placeholder="Ask a question about electrochemistry"></textarea>
+  <button onclick="sendQuery()">Submit</button>
+  <div id="response"></div>
 
-        <!-- Response Box (hidden until message is sent) -->
-        <div id="response" class="response">
-            <p id="response-insight" class="insight"></p>
-            <p id="response-advice" class="advice"></p>
-        </div>
+  <script>
+    async function sendQuery() {
+      const userInput = document.getElementById('userInput').value;
+      const responseBox = document.getElementById('response');
+      responseBox.innerText = "Loading...";
+      
+      try {
+        const response = await axios.post(
+          'https://api.openai.com/v1/chat/completions',
+          {
+            model: "gpt-4",
+            messages: [{ role: "user", content: userInput }],
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer YOUR_OPENAI_API_KEY`,
+            },
+          }
+        );
+        const reply = response.data.choices[0].message.content;
+        responseBox.innerText = reply;
+        speakText(reply);
+      } catch (error) {
+        responseBox.innerText = "Error: " + error.message;
+      }
+    }
 
-        <!-- Textbox for User Input -->
-        <div>
-            <label for="user-input">Ask Half Light:</label>
-            <input type="text" id="user-input" placeholder="Type your question...">
-            <button onclick="getHalfLightResponse()">Ask</button>
-        </div>
-    </div>
-
-    <script>
-        const halfLightDialogues = [
-            "Danger’s in the air, we can feel it. We must act now, don’t let it slip away. He's lying. We know it.",
-            "We’ve been here before. The fear is real. We control this. Stay focused.",
-            "Use that fear, make them sweat. We’re not backing down. Not now, not ever.",
-            "He’s scared, but he’s trying to hide it. We see through that. We’ve been trained for this.",
-            "They think they can fool us? Let’s show them what happens when you test us.",
-            "Take control, strike first. Fear is our ally, let it guide us.",
-            "Fear drives us, but it must be kept in check. Fear without control is chaos.",
-            "Instinct doesn’t lie. It sees what others cannot. Trust what we know.",
-            "We control the narrative. They think they can dictate the pace, but they’re wrong.",
-            "Push forward. Don’t let them think they can stop us. Stay ahead.",
-            "You feel it, don’t you? The tension. They’re hiding something, and we’re about to expose it.",
-            "A slight twitch, a glance. They can’t fool us. We know what’s coming.",
-            "We’re in the zone. Let’s move before they even realize we’re here.",
-            "The clock’s ticking, and so is the danger. We won’t wait for it to catch us off guard.",
-            "We’re prepared. They don’t know who they’re dealing with.",
-            "Fear is our advantage. Let it propel us. They don’t stand a chance.",
-            "Control the fear. Don’t let it control you. Mastery over it is our weapon.",
-            "The air’s thick with it. Every moment brings us closer to victory. Don’t waste it.",
-            "It’s in the little details. That slight hesitation. That’s where we strike.",
-            "They want to outmaneuver us? We’ll see about that.",
-            "Trust in what we’ve been trained for. Trust in us. It’s instinct.",
-            "We know the weakness, we know how to exploit it. Now’s the time.",
-            "They’ll regret this. We’ve seen this before. They won’t get away.",
-            "There’s a pattern. Watch closely. We can predict their next move.",
-            "They think they’re clever? Watch us turn the tables.",
-            "Let them believe they have control. It’s better that way.",
-            "Move with purpose. Every step should be calculated.",
-            "They’re in a corner. Don’t let them escape. We’ll trap them.",
-            "Victory is already ours. They just don’t realize it yet.",
-            "The fear? It’s in the air. But we’re not afraid.",
-            "We control how this plays out. They’ll follow our lead.",
-            "Instinct tells us it’s time. We can’t hesitate.",
-            "They might try to escape, but there’s no way out. Not for them.",
-            "Don’t second guess. Act. Now.",
-            "We know their weaknesses. It’s time to strike.",
-            "Trust your gut. We’re on the right path.",
-            "They’ll see we’re not afraid. Let them think they’re in control.",
-            "We’ve seen enough. It’s time to act decisively.",
-            "Don’t let them think they’ve won. They haven’t.",
-            "We’ve got this. Every move is ours to make.",
-            "Stay calm. They’ll make the first mistake. Let’s exploit it.",
-            "Watch their every move. We’ll capitalize on their hesitation.",
-            "Don’t let them control the narrative. We dictate the flow.",
-            "Every moment matters. Make each one count.",
-            "The room’s closing in on them. They can’t escape now.",
-            "They’ll fold. It’s only a matter of time.",
-            "We’ve been here before, and we’ve won before. This time is no different.",
-            "There’s nothing they can do. We’re always one step ahead.",
-            "They’re trying to outthink us. That’s their mistake.",
-            "Fear is a weapon. Let it be ours.",
-            "We don’t wait. We act. Now.",
-            "Their fear is palpable. Good. Let it work for us.",
-            "We’re not backing down. We’ll push them to the edge.",
-            "They’ve made their move. Now it’s our turn.",
-            "There’s nothing left for them to do but surrender.",
-            "The game’s over. We’ve won, and they don’t even know it yet.",
-            "Stay sharp. They’ll make a mistake. And when they do, we strike.",
-            "They’re starting to crack. Just a little more pressure.",
-            "It’s almost over. Stay focused, stay sharp.",
-            "We can feel it. They know they’re losing.",
-            "We’ve been prepared for this moment. We’ll use it to our advantage.",
-            "Don’t wait for them to make a move. We’re in charge now.",
-            "Victory is inevitable. They just don’t know it yet."
-        ];
-
-        function getHalfLightResponse() {
-            const userInput = document.getElementById("user-input").value.trim().toLowerCase();
-            if (!userInput) return;
-
-            // Simple keywords for emotional context
-            const keywords = [
-                { word: 'fear', response: "Fear’s been creeping up on you, hasn't it? Don’t let it consume you. Harness it. Control it." },
-                { word: 'tension', response: "The tension’s thick, isn’t it? That feeling of something about to snap? Let it fuel your instincts. They're hiding something." },
-                { word: 'danger', response: "You sense it too, don’t you? The danger’s all around. We know it. We can use it." },
-                { word: 'fight', response: "Fight for what’s ours. It’s in us. We've trained for this. Let’s make them regret underestimating us." },
-                { word: 'win', response: "Victory is already within our grasp. They just don't know it yet. Keep pushing." }
-            ];
-
-            // Check user input for emotional context
-            let responseText = "What’s on your mind? Let me help you focus.";
-            keywords.forEach(keyword => {
-                if (userInput.includes(keyword.word)) {
-                    responseText = keyword.response;
-                }
+    function speakText(text) {
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = "en-US";
+      window.speechSynthesis.speak(speech);
+    }
+  </script>
+</body>
+</html>
