@@ -1,50 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Electrochemistry AI</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrochemistry AI with Speech</title>
 </head>
 <body>
-  <h1>Electrochemistry AI</h1>
-  <textarea id="userInput" placeholder="Ask a question about electrochemistry"></textarea>
-  <button onclick="sendQuery()">Submit</button>
-  <div id="response"></div>
+    <h1>Electrochemistry AI</h1>
+    <button id="start-recognition">Start Recognition</button>
+    <button id="stop-recognition" disabled>Stop Recognition</button>
+    
+    <div id="transcription">
+        <h3>Transcription:</h3>
+        <p id="text-output">Listening...</p>
+    </div>
 
-  <script>
-    async function sendQuery() {
-      const userInput = document.getElementById('userInput').value;
-      const responseBox = document.getElementById('response');
-      responseBox.innerText = "Loading...";
-      
-      try {
-        const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-          {
-            model: "gpt-4",
-            messages: [{ role: "user", content: userInput }],
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer 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`,
-            },
-          }
-        );
-        const reply = response.data.choices[0].message.content;
-        responseBox.innerText = reply;
-        speakText(reply);
-      } catch (error) {
-        responseBox.innerText = "Error: " + error.message;
-      }
-    }
+    <div id="response">
+        <h3>Response:</h3>
+        <p id="response-output">Waiting for response...</p>
+    </div>
 
-    function speakText(text) {
-      const speech = new SpeechSynthesisUtterance(text);
-      speech.lang = "en-US";
-      window.speechSynthesis.speak(speech);
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
+// Initialize Speech Recognition (Web Speech API)
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.continuous = true;  // Keep listening until manually stopped
+recognition.interimResults = true;  // Show interim results while speaking
+
+// Elements
+const startButton = document.getElementById('start-recognition');
+const stopButton = document.getElementById('stop-recognition');
+const textOutput = document.getElementById('text-output');
+const responseOutput = document.getElementById('response-output');
+
+// Speech Recognition event handlers
+recognition.onstart = function() {
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    textOutput.innerText = "Listening...";
+};
+
+recognition.onend = function() {
+    startButton.disabled = false;
+    stopButton.disabled = true;
+    textOutput.innerText = "Stopped listening.";
+};
+
+recognition.onresult = function(event) {
+    let transcript = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+    }
+    textOutput.innerText = transcript;
+    if (event.results[event.results.length - 1].isFinal) {
+        // Respond after recognizing a complete phrase
+        handleResponse(transcript);
+    }
+};
+
+// Button actions
+startButton.addEventListener('click', () => {
+    recognition.start();
+});
+
+stopButton.addEventListener('click', () => {
+    recognition.stop();
+});
+
+// Speech Synthesis (Text-to-Speech)
+function handleResponse(transcript) {
+    let response = '';
+    // Simulate Electrochemistry AI's response based on input (you can expand this)
+    if (transcript.toLowerCase().includes('electrochemistry')) {
+        response = 'Electrochemistry is the study of chemical processes that cause electrons to move. Would you like to know more about this field?';
+    } else {
+        response = 'I didn’t quite catch that. Could you repeat it?';
+    }
+
+    // Update the text response on screen
+    responseOutput.innerText = response;
+
+    // Read the response out loud
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(response);
+    synth.speak(utterance);
+}
